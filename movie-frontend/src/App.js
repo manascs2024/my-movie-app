@@ -11,7 +11,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import './App.css';
-import './css/regislog.css'
+import './css/regislog.css';
 
 
 function App() {
