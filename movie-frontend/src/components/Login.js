@@ -11,18 +11,34 @@ export default function Login() {
     try {
       const res = await axios.post('/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
-      window.location = '/'; // or use navigate
+      window.location = '/';
     } catch (err) {
       setMsg(err.response?.data?.msg || 'Login failed');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">Login</button>
-      {msg && <div>{msg}</div>}
-    </form>
+    <div className="auth-container">
+      <div className="auth-title">Login</div>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <input
+          className="auth-input"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          className="auth-input"
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button className="auth-button" type="submit">Login</button>
+        {msg && <div>{msg}</div>}
+      </form>
+    </div>
   );
 }

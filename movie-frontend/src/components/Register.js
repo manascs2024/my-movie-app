@@ -13,11 +13,27 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">Register</button>
-      {msg && <div>{msg}</div>}
-    </form>
+    <div className="auth-container">
+      <div className="auth-title">Register</div>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <input
+          className="auth-input"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          className="auth-input"
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        <button className="auth-button" type="submit">Register</button>
+        {msg && <div>{msg}</div>}
+      </form>
+    </div>
   );
 }
