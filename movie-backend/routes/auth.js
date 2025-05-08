@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
     user = new User({ email, password: hashed, verifyToken });
     await user.save();
 
-    const link = `${process.env.CLIENT_URL}/verify-email?token=${verifyToken}`;
+    const link = `${process.env.BACKEND_URL}/api/auth/verify-email?token=${verifyToken}`;
     await sendEmail(
       email,
       'Verify your email',
@@ -38,15 +38,16 @@ router.get('/verify-email', async (req, res) => {
     const { token } = req.query;
     const { email } = jwt.verify(token, JWT_SECRET);
     const user = await User.findOne({ email, verifyToken: token });
-    if (!user) return res.status(400).send('Invalid or expired token');
+    if (!user) return res.redirect(`${process.env.CLIENT_URL}/login?verified=0`);
     user.isVerified = true;
     user.verifyToken = undefined;
     await user.save();
-    res.send('Email verified! You can now log in.');
+    return res.redirect(`${process.env.CLIENT_URL}/login?verified=1`);
   } catch {
-    res.status(400).send('Invalid or expired token');
+    return res.redirect(`${process.env.CLIENT_URL}/login?verified=0`);
   }
 });
+
 
 // Login (only if verified)
 router.post('/login', async (req, res) => {

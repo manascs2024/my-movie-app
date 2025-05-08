@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import API from '../api'; // Make sure this path matches your project structure
+import { useLocation } from 'react-router-dom';
+import API from '../api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState('');
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const verified = params.get('verified');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +25,16 @@ export default function Login() {
   return (
     <div className="auth-container">
       <div className="auth-title">Login</div>
+      {verified === '1' && (
+        <div className="success-msg" style={{ color: 'green', marginBottom: '1rem' }}>
+          Your email is verified, please login.
+        </div>
+      )}
+      {verified === '0' && (
+        <div className="error-msg" style={{ color: 'red', marginBottom: '1rem' }}>
+          Invalid or expired verification link.
+        </div>
+      )}
       <form className="auth-form" onSubmit={handleSubmit}>
         <input
           className="auth-input"
