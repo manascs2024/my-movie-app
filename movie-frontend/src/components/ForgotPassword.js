@@ -10,10 +10,20 @@ export default function ForgotPassword() {
     setMsg(res.data.msg);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
-      <button type="submit">Send Reset Link</button>
-      {msg && <div>{msg}</div>}
-    </form>
+    <div className="auth-container">
+      <div className="auth-title">Forgot Password</div>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <input
+          className="auth-input"
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <button className="auth-button" type="submit">Send Reset Link</button>
+        {msg && <div>{msg}</div>}
+      </form>
+    </div>
   );
 }

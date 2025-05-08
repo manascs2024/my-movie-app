@@ -18,6 +18,7 @@ export default function Register() {
       <form className="auth-form" onSubmit={handleSubmit}>
         <input
           className="auth-input"
+          type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
           placeholder="Email"
