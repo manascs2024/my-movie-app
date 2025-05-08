@@ -10,6 +10,9 @@ import VerifyEmail from "./components/VerifyEmail";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
+import './App.css';
+import './css/regislog.css'
+
 
 function App() {
   return (
