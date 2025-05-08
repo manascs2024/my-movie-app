@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import MovieDetails from "./pages/MovieDetails";
-import LikedMovies from "./pages/LikedMovies";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import VerifyEmail from "./pages/VerifyEmail";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
+import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
+import LikedMovies from "./components/LikedMovies";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import VerifyEmail from "./components/VerifyEmail";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MovieList />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route
           path="/liked"
