@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
@@ -9,8 +9,12 @@ export default function ResetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('/api/auth/reset-password', { token, password });
-    setMsg(res.data.msg);
+    try {
+      const res = await API.post('/auth/reset-password', { token, password });
+      setMsg(res.data.msg);
+    } catch (err) {
+      setMsg(err.response?.data?.msg || 'Reset failed');
+    }
   };
 
   return (

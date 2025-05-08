@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [msg, setMsg] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('/api/auth/forgot-password', { email });
-    setMsg(res.data.msg);
+    try {
+      const res = await API.post('/auth/forgot-password', { email });
+      setMsg(res.data.msg);
+    } catch (err) {
+      setMsg(err.response?.data?.msg || 'Request failed');
+    }
   };
+
   return (
     <div className="auth-container">
       <div className="auth-title">Forgot Password</div>

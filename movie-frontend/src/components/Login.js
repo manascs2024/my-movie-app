@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api'; // Make sure this path matches your project structure
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -9,7 +9,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
+      const res = await API.post('/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       window.location = '/';
     } catch (err) {

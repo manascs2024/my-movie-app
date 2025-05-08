@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -8,7 +8,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('/api/auth/register', { email, password });
+    const res = await API.post('/auth/register', { email, password });
     setMsg(res.data.msg);
   };
 
