@@ -8,8 +8,13 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await API.post('/auth/register', { email, password });
-    setMsg(res.data.msg);
+    try {
+      const res = await API.post('/auth/register', { email, password });
+      setMsg(res.data.msg); // Success message
+    } catch (err) {
+      // Show backend error message if present, else generic error
+      setMsg(err.response?.data?.msg || 'Registration failed');
+    }
   };
 
   return (
